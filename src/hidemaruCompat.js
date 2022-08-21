@@ -1,3 +1,7 @@
+/*!
+ * hidemaruCompat v1.0.0
+ */
+
 (function() {
     var gv = function(s){return hidemaru.getVar(s);};
     var evm = function(s){return hidemaru.evalMacro(s);};
