@@ -14,12 +14,8 @@
     var fn = hidemacJsGlobalFomulaNumber;
     var fs = hidemacJsGlobalFomulaString;
     
-    if (typeof hidemaruCompat == 'undefined') {
-        hidemaruCompat = {}; // グローバル変数
-    }
-    
-    var hc = hidemaruCompat;
-    if (hc) {
+    var hc = {};
+    {
         hc.loaddll = function(){var m="loaddll";eval(fn); return r;}
         hc.freedll = function(){var m="freedll ";eval(st); return r;}
         hc.dllfunc = function(){var m="dllfunc";eval(fn);return r;}
@@ -38,6 +34,13 @@
         hc.setcomdetachmethod = function(){var m="setcomdetachmethod";eval(st); return r;}
         hc.keepobject = function(){var m="keepobject";eval(st); return r;}
     }
+
+    if (typeof(module) != 'undefined' && module.exports) {
+        module.exports = hc;
+    } else {
+        hidemaruCompat = hc;
+    }
+
 })();
 
 
