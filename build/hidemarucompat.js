@@ -29,7 +29,7 @@
         hc.dllfuncexist = function () { var m = "dllfuncexist"; eval(fn); return r; };
         hc.keepdll = function () { var m = "keepdll"; eval(st); return r; };
         hc.createobject = function () { var m = "createobject"; eval(fn); return r; };
-        hc.releaseobject = function () { var m = "releaseobject"; eval(fn); return r; };
+        hc.releaseobject = function () { var m = "releaseobject"; eval(st); return r; };
         hc.member = {
             rnum: function () { var m = "member"; eval(fn); return r; },
             rstr: function () { var m = "member"; eval(fs); return r; }
