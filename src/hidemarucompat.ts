@@ -9,6 +9,24 @@ declare var module: { filename: string, directory: string, exports: any };
 declare var hidemaruCompat: any;
 
 (function () {
+    var guid = "{BA97AD4E-1AF7-457A-AFE5-E270E0212A70}";
+
+    var op_dllobj: hidemaru.ILoadDllResult = null;
+
+    function output(msg: string): boolean {
+
+        if (!op_dllobj) {
+            op_dllobj = hidemaru.loadDll(hidemaruGlobal.hidemarudir() + "\\HmOutputPane.dll");
+        }
+
+        if (op_dllobj) {
+            var msg_replaced = msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
+            return op_dllobj.dllFunc.Output(hidemaruGlobal.hidemaruhandle(0), msg_replaced);
+        }
+
+        return false;
+    }
+
     var gvm = function (s) { return hidemaru.getVar(s); };
     var evm = function (s) { return hidemaru.evalMacro(s); };
 
@@ -50,6 +68,17 @@ declare var hidemaruCompat: any;
     if (typeof (module) != 'undefined' && module.exports) {
         module.exports = hc;
     } else {
+        if (typeof (hidemaruCompat) != 'undefined') {
+            if (hidemaruCompat.guid == null || hidemaruCompat.guid != guid) {
+                output("本モジュールとは異なるhidemaruCompatが、すでに定義されています。\r\n上書きします。\r\n");
+            }
+
+            // 一致していたら上書きはしない
+            if (hidemaruCompat.guid == guid) {
+                return;
+            }
+        }
+
         hidemaruCompat = hc;
     }
 
