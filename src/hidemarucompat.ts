@@ -2,7 +2,7 @@
 /*
  * This codes is licensed under CC0 1.0 Universal
  *
- * hidemarucompat v1.0.0
+ * hidemarucompat v1.0.1
  */
 
 declare var module: { filename: string, directory: string, exports: any };
