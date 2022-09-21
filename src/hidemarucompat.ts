@@ -2,31 +2,34 @@
 /*
  * This codes is licensed under CC0 1.0 Universal
  *
- * hidemarucompat v1.0.1
+ * hidemarucompat v1.0.2
  */
+/// <reference path="../../hm_jsmode_ts_difinition/types/hm_jsmode_strict.d.ts" />
 
 declare var module: { filename: string, directory: string, exports: any };
 declare var hidemaruCompat: any;
+declare var r: any;
 
 (function () {
-    var guid = "{BA97AD4E-1AF7-457A-AFE5-E270E0212A70}";
+    const guid = "{BA97AD4E-1AF7-457A-AFE5-E270E0212A70}";
 
-    var op_dllobj: hidemaru.ILoadDllResult = null;
+    let op_dllobj: hidemaru.ILoadDllResult = null;
 
     function output(msg: string): boolean {
 
         if (!op_dllobj) {
-            op_dllobj = hidemaru.loadDll(hidemaruGlobal.hidemarudir() + "\\HmOutputPane.dll");
+            op_dllobj = hidemaru.loadDll("HmOutputPane.dll");
         }
 
         if (op_dllobj) {
-            var msg_replaced = msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
-            return op_dllobj.dllFunc.Output(hidemaruGlobal.hidemaruhandle(0), msg_replaced);
+            let msg_replaced = msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
+            return op_dllobj.dllFunc.Output(hidemaru.getCurrentWindowHandle(), msg_replaced);
         }
 
         return false;
     }
 
+    // HidemaruJSに合わせるため、あえて var のままにしておく
     var gvm = function (s) { return hidemaru.getVar(s); };
     var evm = function (s) { return hidemaru.evalMacro(s); };
 
