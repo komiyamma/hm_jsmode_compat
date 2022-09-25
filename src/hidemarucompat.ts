@@ -15,7 +15,7 @@ declare var r: any;
 
     let op_dllobj: hidemaru.ILoadDllResult = hidemaru.loadDll("HmOutputPane.dll");
 
-    function output(msg: string): boolean {
+    function output(msg: string): number {
         let msg_replaced = msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
         return op_dllobj.dllFunc.Output(hidemaru.getCurrentWindowHandle(), msg_replaced);
     }
