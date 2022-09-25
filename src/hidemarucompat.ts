@@ -13,20 +13,11 @@ declare var r: any;
 (function () {
     const guid = "{BA97AD4E-1AF7-457A-AFE5-E270E0212A70}";
 
-    let op_dllobj: hidemaru.ILoadDllResult = null;
+    let op_dllobj: hidemaru.ILoadDllResult = hidemaru.loadDll("HmOutputPane.dll");
 
     function output(msg: string): boolean {
-
-        if (!op_dllobj) {
-            op_dllobj = hidemaru.loadDll("HmOutputPane.dll");
-        }
-
-        if (op_dllobj) {
-            let msg_replaced = msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
-            return op_dllobj.dllFunc.Output(hidemaru.getCurrentWindowHandle(), msg_replaced);
-        }
-
-        return false;
+        let msg_replaced = msg.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
+        return op_dllobj.dllFunc.Output(hidemaru.getCurrentWindowHandle(), msg_replaced);
     }
 
     // HidemaruJSに合わせるため、あえて var のままにしておく
