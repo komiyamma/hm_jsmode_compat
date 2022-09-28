@@ -1,8 +1,7 @@
 /**
  * @file 秀丸のjsmode用のTypeScript定義ファイル
  * @author Akitsugu Komiyama
- * @license The Custom License
- *          (https://github.com/komiyamma/hm_jsmode_ts_difinition/blob/main/LICENSE)
+ * @license This typescript definition is licensed under CC0 1.0 Universal
  * @version v1.0.2
  */
 
