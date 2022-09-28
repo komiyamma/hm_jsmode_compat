@@ -24,6 +24,17 @@
     function loaddll(dllpath: string): number
 
     /**
+     * freedll文は、loaddllしたDLLを解放します。
+     *
+     * @param dll_id 
+     * DLLのID(識別値)を表す数値
+     * 
+     * @returns
+     * 返り値は意味を持ちません。
+     */
+    function freedll(dll_id: number): number
+
+    /**
      * createobject関数は、COMオブジェクトを作成します。    
      * @param progid 
      * 登録されたCOMオブジェクトのProgIdを指定します。
