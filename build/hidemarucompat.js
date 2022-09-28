@@ -1,7 +1,7 @@
 /*
  * This codes is licensed under CC0 1.0 Universal
  *
- * hidemarucompat v1.0.2
+ * hidemarucompat v1.0.3
  */
 /// <reference path="../../hm_jsmode_ts_difinition/types/hm_jsmode_strict.d.ts" />
 (function () {
