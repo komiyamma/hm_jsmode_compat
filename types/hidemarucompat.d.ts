@@ -9,6 +9,21 @@
  declare namespace hidemaruCompat {
 
     /**
+     * loaddll関数は、秀丸用のdllfunc対応のDLLをロードします。    
+     * 
+     * @param dllpath
+     * DLLのファイル名を指定します。    
+     * 
+     * @example
+     * var dll = loaddll("HmOutputPane.dll");
+     * 
+     * @returns
+     * 成功時は、DLLのID(識別値)を表す0以外の値が返ります。    
+     * 失敗時は、0が返ります。    
+     */
+    function loaddll(dllpath: string): number
+
+    /**
      * createobject関数は、COMオブジェクトを作成します。    
      * @param progid 
      * 登録されたCOMオブジェクトのProgIdを指定します。
