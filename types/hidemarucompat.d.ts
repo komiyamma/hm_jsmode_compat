@@ -140,7 +140,7 @@
      * 
      * @example
      * var dll = loaddll("C:\\folder\\test.dll");
-     * var ret = dllfuncstr(dll, "Func_for_dllfunc",1,"a");
+     * var ret = dllfuncstrw(dll, "Func_for_dllfunc",1,"a");
      * message(ret);
      * 
      * @returns
@@ -208,6 +208,20 @@
      * 返り値は意味を持ちません。
      */
     function keepdll(dll_id: number, keep_mode: number): number
+
+    /**
+     * 識別値を指定して、DLLのファイル名を返します。
+     * 
+     * @param dll_id 
+     * DLLのID(識別値)を表す数値
+     * 
+     * @example
+     * var dllpath = getloaddllfile(dll_id);
+     * 
+     * @returns
+     * DLLのID(識別値)に対応するdllのフルパスが返る。
+     */
+    function getloaddllfile(dll_id: number): string
 
     /**
      * createobject関数は、COMオブジェクトを作成します。    
