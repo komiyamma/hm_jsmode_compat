@@ -81,11 +81,63 @@
      * 
      * @param com_id 
      * createobject や comが返ってくるメソッドの返り値。
+     * 
+     * @returns
+     * 返り値は意味を持ちません。
      */
     function releaseobject(com_id: number): number;
 
+    /**
+     * keepobject文は、マクロが終了した後も解放しないようにするかを指示します。    
+     * パラメータで取得したオブジェクトを指定します。    
+     * 
+     * @param com_id 
+     * createobject や comが返ってくるメソッドの返り値。
+     * 
+     * @param mode
+     * モードを指定します。    
+     * - 0の場合、マクロ終了後に自動解放します。    
+     * - 1の場合、マクロ終了後に自動解放しません。objは再利用できません。    
+     * - 2の場合、マクロ終了後に自動解放しません。objは再利用でき、後から再びマクロでreleaseobjectできます。    
+     * keepobject文を呼ばないときは、mode=0の状態と同じです。(自動解放する)    
+     * modeを省略した場合、mode=1と同じです。
+     * 
+     * @returns
+     * 返り値は意味を持ちません。
+     */
+    function keepobject(com_id: number, mode?: number): number;
+
+    /**
+     * setcomdetachmethod文は、オブジェクトが解放されるときに呼び出されるメソッドを指定します。
+     * 
+     * createobjectで作成されたオブジェクトは、マクロ終了時やreleaseobjectで解放されます。    
+     * 解放される直前に、setcomdetachmethod文で指定したメソッドを自動的に呼び出します。    
+     * 
+     * @param com_id 
+     * createobject や comが返ってくるメソッドの返り値。
+     * 
+     * @param method_name
+     * オブジェクトが解放されるときに呼び出されるメソッドを指定する。    
+     * 対象のメソッドは、終了の理由により、以下のような数値を伴って呼ばれる。    
+     * - 1　releaseobjectで解放
+     * - 3　プロセス終了時
+     * - 4　マクロ終了時(keepobject(obj,0);のとき)
+     * 
+     * @example
+     * var obj = hidemaruCompat.createobject("xxx.xxx");
+     * hidemaruCompat.setcomdetachmethod(obj, "TestMethod");
+     * 
+     * // マクロが終わると、
+     * // 自動的にTestMethod(4)が呼ばれる
+     * 
+     * @returns
+     * 返り値は意味を持ちません。
+     */
+    function setcomdetachmethod(com_id: number, method_name: string): number;
+
     namespace member {
         /**
+         * 対象のCOMオブジェクトのプロパティもしくはメソッドを呼び出す    
          * 
          * @param com_id
          * createobject や comが返ってくるメソッドの返り値。
@@ -106,6 +158,7 @@
         function rnum(com_id: number, member_name: string, ...optional_params: (number|string)[]): number;
 
         /**
+         * 対象のCOMオブジェクトのプロパティもしくはメソッドを呼び出す    
          * 
          * @param com_id 
          * createobject や comが返ってくるメソッドの返り値。
