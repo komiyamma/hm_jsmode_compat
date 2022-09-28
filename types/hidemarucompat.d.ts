@@ -64,7 +64,7 @@
 
     /**
      * dllfuncstr関数は、DLL内の関数を呼び出し、「文字列」を受け取ります。    
-     * 関数のパラメータの文字列部分は非Unicodeです。    
+     * 受け取る文字列も、関数のパラメータの文字列部分も、非Unicodeです。    
      * 
      * この関数は古い時代に制作されたdll用で、    
      * 新規dllをこの形式で呼び出す形にすることはオススメ出来ません。    
@@ -90,6 +90,64 @@
      * 文字列型
      */
     function dllfuncstr(dll_id: number, func_name: string, ...optional_params: (number|string)[]): string
+
+    /**
+     * dllfuncw関数は、DLL内の関数を呼び出し、「数値」を受け取ります。    
+     * 関数のパラメータの文字列部分はUnicodeです。    
+     * Unicodeかどうかの違いは、DLL側にあります。    
+     * マクロ上では文字列がUnicodeかどうかの違いはありません。    
+     * 
+     * @param dll_id 
+     * DLLのID(識別値)を表す数値
+     * 
+     * @param func_name
+     * 指定された呼び出し関数名をDLLから探し、その関数を呼び出します。    
+     * 
+     * @param optional_params 
+     * 関数に渡す引数。    
+     * 文字列もしくは数値を引数として指定できます。    
+     * 
+     * @example
+     * var dll = loaddll("C:\\folder\\test.dll");
+     * var ret = dllfuncw(dll, "Func_for_dllfunc",1,"a");
+     * message(ret);
+     * 
+     * @returns
+     * DLLの返す値がそのままdllfuncw関数の返り値となります。    
+     * 数値型
+     */
+    function dllfuncw(dll_id: number, func_name: string, ...optional_params: (number|string)[]): number
+
+    /**
+     * dllfuncstrw関数は、DLL内の関数を呼び出し、「文字列」を受け取ります。    
+     * 受け取る文字列も、関数のパラメータの文字列部分も、Unicodeです。
+     * Unicodeかどうかの違いは、DLL側にあります。    
+     * マクロ上では文字列がUnicodeかどうかの違いはありません。    
+     * 
+     * この関数は古い時代に制作されたdll用で、    
+     * 新規dllをこの形式で呼び出す形にすることはオススメ出来ません。    
+     * dllfuncstrではなく、 dllfuncstrw に合わせた制作へと移行してください。
+     * 
+     * @param dll_id 
+     * DLLのID(識別値)を表す数値
+     * 
+     * @param func_name
+     * 指定された呼び出し関数名をDLLから探し、その関数を呼び出します。    
+     * 
+     * @param optional_params 
+     * 関数に渡す引数。    
+     * 文字列もしくは数値を引数として指定できます。    
+     * 
+     * @example
+     * var dll = loaddll("C:\\folder\\test.dll");
+     * var ret = dllfuncstr(dll, "Func_for_dllfunc",1,"a");
+     * message(ret);
+     * 
+     * @returns
+     * DLLの返す値がそのままdllfunc関数の返り値となります。    
+     * 文字列型
+     */
+    function dllfuncstrw(dll_id: number, func_name: string, ...optional_params: (number|string)[]): string
 
     /**
      * createobject関数は、COMオブジェクトを作成します。    
