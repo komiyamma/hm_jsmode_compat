@@ -150,6 +150,66 @@
     function dllfuncstrw(dll_id: number, func_name: string, ...optional_params: (number|string)[]): string
 
     /**
+     * DLLが解放されるタイミングで呼び出される関数を設定します。    
+     * マクロが終了した後でも、秀丸エディタの終了時などにDLLが解放されるタイミングがあれば呼び出されます。    
+     * 
+     * @param dll_id 
+     * DLLのID(識別値)を表す数値
+     * 
+     * @param func_name 
+     * 指定された呼び出し関数名をDLLから探し、その関数を呼び出します。    
+     * 
+     * @example
+     * setdlldetachfunc(dll_id, "MyDllDetachFunc");
+     * 
+     * @comment
+     * この文を実行せず、DLL側に"DllDetachFunc_After_Hm866"という関数がエクスポートされていれば、    
+     * setdlldetachfunc(dll_id, "DllDetachFunc_After_Hm866");    
+     * をしているのと同じになります。
+     * 
+     * @returns
+     * 返り値は意味を持ちません。
+     */
+    function setdlldetachfunc(dll_id: number, func_name: string): number
+
+    /**
+     * DLL内に指定した関数名が存在するかどうかを確認します。    
+     * 
+     * @param dll_id 
+     * DLLのID(識別値)を表す数値
+     * 
+     * @param func_name 
+     * 関数名を指定します。
+     * 
+     * @example
+     * var is_exists = dllfuncexist(dll_id, "MyFunc");
+     * 
+     * @returns
+     * 関数が存在する場合は0以外、存在しない場合は0が返ります。
+     */
+    function dllfuncexist(dll_id: number, func_name: string): number
+
+    /**
+     * keepdll文は、マクロが終了した後にDLLを解放するかどうかを指定します。    
+     * 
+     * @param dll_id 
+     * DLLのID(識別値)を表す数値
+     * 
+     * @param keep_mode 
+     * マクロが終了した後にDLLを解放するかどうかを指定します。    
+     * - 0の場合、マクロ終了後に自動解放します。    
+     * - 1の場合、マクロ終了後に自動解放しません。    
+     * - keepdll文を呼ばないときは、1の状態と同じです。(自動解放しない)
+     * 
+     * @example
+     * keepdll(dll_id, 1);
+     * 
+     * @returns
+     * 返り値は意味を持ちません。
+     */
+    function keepdll(dll_id: number, keep_mode: number): number
+
+    /**
      * createobject関数は、COMオブジェクトを作成します。    
      * @param progid 
      * 登録されたCOMオブジェクトのProgIdを指定します。
