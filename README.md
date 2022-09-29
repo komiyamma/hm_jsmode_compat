@@ -1,4 +1,4 @@
-# 秀丸マクロ jsmode において、秀丸マクロに元々ある細かく制御が可能な旧来の loaddll や createobject を使えるようにする
+# 秀丸マクロ jsmode において、秀丸マクロに元々の loaddll や createobject やそれに付随する関数群を使えるようにする
 
 ![hidemaruCompat v1.0.3](https://img.shields.io/badge/hidemaruCompat-v1.0.3-6479ff.svg)
 [![CC0](https://img.shields.io/badge/license-CC0-blue.svg?style=flat)](LICENSE)
