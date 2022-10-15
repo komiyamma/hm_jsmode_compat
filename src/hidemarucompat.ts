@@ -6,7 +6,7 @@
  */
 /// <reference path="../../hm_jsmode_ts_difinition/types/hm_jsmode_strict.d.ts" />
 
-declare var module: { filename: string, directory: string, exports: any };
+declare var module: { exports: any };
 declare var hidemaruCompat: any;
 declare var r: any;
 
