@@ -2,7 +2,7 @@
  * @file 秀丸のjsmode用のTypeScript定義ファイル
  * @author Akitsugu Komiyama
  * @license This typescript definition file is licensed under CC0 1.0 Universal
- * @version v1.0.3
+ * @version v1.0.4
  */
 
  declare namespace hidemaruCompat {
